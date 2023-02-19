@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\LoginController;
+use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('auth/register', RegisterController::class);
-Route::post('auth/login', LoginController::class);
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('register', RegisterController::class);
+    Route::post('login', LoginController::class);
+});
+
+Route::group(['prefix' => 'profile','middleware' => 'auth:sanctum'], function () {
+    Route::get('', [ProfileController::class, 'show']);
+    Route::put('', [ProfileController::class, 'update']);
+});

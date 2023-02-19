@@ -23,7 +23,7 @@ class RegisterController extends Controller
         $device = substr($request->userAgent() ?? '', 0, 255);
 
         return $this->sendResponse([
-            'access_token' => $user->createToken($device)->plainTextToken,
+            'accessToken' => $user->createToken($device)->plainTextToken,
         ], '', Response::HTTP_CREATED);
     }
 }

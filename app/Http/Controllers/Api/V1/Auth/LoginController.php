@@ -28,7 +28,7 @@ class LoginController extends Controller
         $expiresAt = $request->remember ? null : now()->addMinutes(config('session.lifetime'));
 
         return $this->sendResponse([
-            'access_token' => Auth::user()->createToken($device, expiresAt: $expiresAt)->plainTextToken
+            'accessToken' => Auth::user()->createToken($device, expiresAt: $expiresAt)->plainTextToken
         ], '', Response::HTTP_CREATED);
     }
 }
