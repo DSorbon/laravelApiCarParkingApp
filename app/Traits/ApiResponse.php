@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Traits;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 trait ApiResponse
 {
@@ -25,7 +26,7 @@ trait ApiResponse
             'message' => $error,
         ];
         if (!empty($errorMessages)) {
-            $response['data'] = $errorMessages;
+            $response['errors'] = $errorMessages;
         }
         return response()->json($response, $code);
     }
