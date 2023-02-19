@@ -14,7 +14,7 @@ class ProfileController extends Controller
 {
     public function show(Request $request): Response|JsonResponse
     {
-        return $this->sendResponse(new ProfileResource(Auth::user()));
+        return $this->sendResponse(ProfileResource::make(Auth::user()));
     }
 
     public function update(UpdateProfileRequest $request): Response|JsonResponse
@@ -24,6 +24,6 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->update($validatedData);
 
-        return $this->sendResponse(new ProfileResource($user), '', Response::HTTP_ACCEPTED);
+        return $this->sendResponse(ProfileResource::make($user), '', Response::HTTP_ACCEPTED);
     }
 }
