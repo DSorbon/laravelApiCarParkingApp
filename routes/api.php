@@ -32,6 +32,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('logout', LogoutController::class)->middleware('auth:sanctum');
 });
 
+Route::get('zones', [ZoneController::class, 'index']);
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'profile'], function () {
         Route::get('', [ProfileController::class, 'show']);
@@ -40,8 +42,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::apiResource('vehicles', VehicleController::class);
-
-    Route::get('zones', [ZoneController::class, 'index']);
 
     Route::group(['prefix' => 'parkings', 'controller' => ParkingController::class], function () {
        Route::post('start', 'start');
