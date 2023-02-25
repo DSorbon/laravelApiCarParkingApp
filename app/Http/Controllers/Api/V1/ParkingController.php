@@ -11,6 +11,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/*
+ * @group Parking
+*/
 class ParkingController extends Controller
 {
     public function show(Parking $parking): Response|JsonResponse
