@@ -27,7 +27,7 @@ class UpdateVehicleRequest extends FormRequest
             'plate_number' => [
                 'required',
                 'string',
-                Rule::unique('vehicles')->ignore(Auth::id(), 'user_id')
+                Rule::unique('vehicles')->ignore(request('vehicle'))
             ]
         ];
     }
